@@ -1,5 +1,8 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+import scipy.stats as stats
 
 def get_experiment_data(df, start_col, end_col):
   # the function gets the relevant coloumns
