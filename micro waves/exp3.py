@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage import uniform_filter1d
+from scipy.signal import argrelextrema
 
 # calling data from github reposatory
 exp3 = 'https://raw.githubusercontent.com/yaelbacil/physics-lab/refs/heads/main/exp%203%20mesure%201.csv'
@@ -20,12 +22,10 @@ df_exp3[y_col] = pd.to_numeric(df_exp3[y_col], errors='coerce')
 df_exp3_clean = df_exp3.dropna().reset_index(drop=True)
 
 # Apply smoothing to reduce noise
-from scipy.ndimage import uniform_filter1d
 smoothing_window = 7
 y_smoothed = uniform_filter1d(df_exp3_clean[y_col].values, size=smoothing_window, mode='nearest')
 
 # Find local minima on smoothed data using a larger order initially
-from scipy.signal import argrelextrema
 minima_indices_large = argrelextrema(y_smoothed, np.less, order=15)[0]
 
 # Divide data into 5 regions and find the deepest minimum in each region
@@ -142,11 +142,25 @@ if len(minima_x) > 0:
         delta_x_values.append(delta_x)
         print(f"  Delta x M{i+1} --> M{i+2}: {delta_x:.4f} mm")
 
-    # Calculate uncertainty (standard deviation and standard error)
+    # Calculate detection uncertainty for each minima
+    print(f"\n--- Detection Uncertainty Analysis ---")
+    x_spacing = np.mean(np.diff(df_exp3_clean[x_col].values))
+    detection_uncertainty_per_point = x_spacing * smoothing_window / 2
 
+    print(f"Data point spacing: {x_spacing:.6f} mm")
+    print(f"Smoothing window: {smoothing_window}")
+    print(f"Detection uncertainty per minima: +/- {detection_uncertainty_per_point:.6f} mm")
+
+    print(f"\nMinima positions with detection uncertainty:")
+    for i, x_val in enumerate(minima_x):
+        print(f"  Minima {i+1}: x = ({x_val:.4f} +/- {detection_uncertainty_per_point:.6f}) mm, amplitude = {minima_y[i]:.0f} mV")
+
+    # Uncertainty in delta x values (each delta involves 2 minima)
+    delta_x_uncertainty = np.sqrt(2) * detection_uncertainty_per_point
+    print(f"\nUncertainty in each Delta X: +/- {delta_x_uncertainty:.6f} mm")
 
     # Calculate wavelength using distance from M1 to M5 divided by number of intervals
-    print(f"\n--- Wavelength Analysis ---")
+    print(f"\n--- Wavelength Analysis (Method: M1 to M5 Distance) ---")
     distance_m1_to_m5 = minima_x[4] - minima_x[0]  # Distance from first to last minima
     num_intervals = len(minima_x) - 1  # Number of intervals between minima
     wavelength_alt = (distance_m1_to_m5 / num_intervals) * 2
@@ -156,11 +170,26 @@ if len(minima_x) > 0:
     print(f"Delta x (M1 to M5 / intervals): {distance_m1_to_m5 / num_intervals:.4f} mm")
     print(f"Wavelength (lambda = 2 * (M1 to M5 distance / intervals)): {wavelength_alt:.4f} mm")
 
-    # Calculate uncertainty of wavelength
+    # Calculate total uncertainty of wavelength from two sources:
+    # 1. Detection precision uncertainty in M1 and M5
+    # 2. Statistical variation in delta x values
+
+    # Uncertainty from detection precision in M1 and M5 (propagated to wavelength)
+    distance_uncertainty = np.sqrt(2) * detection_uncertainty_per_point  # sqrt(2) because both M1 and M5 have uncertainty
+    detection_propagated_to_wavelength = (distance_uncertainty / num_intervals) * 2
+
+    # Statistical uncertainty from variation in delta x
     std_delta_x = np.std(delta_x_values, ddof=1)  # Sample standard deviation
-    uncertainty_wavelength = (std_delta_x / num_intervals) * 2
-    print(f"Wavelength Uncertainty: {uncertainty_wavelength:.4f} mm")
-    print(f"Wavelength: lambda = ({wavelength_alt:.4f} +/- {uncertainty_wavelength:.4f}) mm")
+    statistical_uncertainty_wavelength = (std_delta_x / num_intervals) * 2
+
+    # Total uncertainty combines both sources (quadrature)
+    total_wavelength_uncertainty = np.sqrt(detection_propagated_to_wavelength**2 + statistical_uncertainty_wavelength**2)
+
+    print(f"\nUncertainty breakdown for wavelength:")
+    print(f"  From detection precision (M1-M5): {detection_propagated_to_wavelength:.6f} mm")
+    print(f"  From statistical variation (std Delta x): {statistical_uncertainty_wavelength:.6f} mm")
+    print(f"  Total combined uncertainty: {total_wavelength_uncertainty:.6f} mm")
+    print(f"\nWavelength: lambda = ({wavelength_alt:.4f} +/- {total_wavelength_uncertainty:.6f}) mm")
 
 plt.title(f'Amplitude vs Distance - standing wave')
 plt.xlabel(f'Distance [mm]')
