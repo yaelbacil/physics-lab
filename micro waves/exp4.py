@@ -14,15 +14,15 @@ df_exp4_m2 = pd.read_csv(exp4_m2)
 
 
 def smooth_signal(amplitude, num_minima=6):
-    """Smooth the signal lightly to reduce noise-driven minima.
+    """Smooth the signal more to reduce noise-driven minima.
 
-    Uses a Savitzky-Golay filter when possible, with a safe fallback to a
+    Uses a Savitzky-Goyal filter when possible, with a safe fallback to a
     centered moving average for short arrays.
     """
     if len(amplitude) < 5:
         return amplitude
 
-    window_length = max(5, len(amplitude) // (num_minima * 3))
+    window_length = max(7, len(amplitude) // (num_minima * 2))
     window_length = min(window_length, len(amplitude) if len(amplitude) % 2 == 1 else len(amplitude) - 1)
     if window_length < 5:
         window_length = 5 if len(amplitude) >= 5 else len(amplitude)
@@ -109,7 +109,7 @@ def find_minimum(distance, amplitude, num_minima=6):
 
 def highlight_minima(ax, minima, color='red'):
     for i, (dist, unc, amp) in enumerate(minima, 1):
-        ax.errorbar(dist, amp, xerr=unc, fmt='x', color=color, markersize=9,
+        ax.errorbar(dist, amp, xerr=unc, fmt='o', color=color, markersize=8,
                     markeredgewidth=2, capsize=3, label='Minimum' if i == 1 else None)
         ax.annotate(str(i), (dist, amp), textcoords='offset points', xytext=(6, 6),
                     fontsize=9, color=color)
@@ -151,7 +151,7 @@ print()
 
 # Plot 1: Measurement 1
 fig1, ax1 = plt.subplots(figsize=(7, 4.5))
-ax1.scatter(distance1, amplitude1, c='C0', edgecolor='k', alpha=0.8, s=50, label='Data')
+ax1.scatter(distance1, amplitude1, c='C0', edgecolor='k', alpha=0.8, s=20, label='Data')
 highlight_minima(ax1, minima_m1)
 ax1.set_xlabel('Distance (mm)')
 ax1.set_ylabel('Amplitude (mV)')
@@ -163,7 +163,7 @@ plt.show()
 
 # Plot 2: Measurement 2
 fig2, ax2 = plt.subplots(figsize=(7, 4.5))
-ax2.scatter(distance2, amplitude2, c='C1', edgecolor='k', alpha=0.8, s=50, label='Data')
+ax2.scatter(distance2, amplitude2, c='C1', edgecolor='k', alpha=0.8, s=20, label='Data')
 highlight_minima(ax2, minima_m2)
 ax2.set_xlabel('Distance (mm)')
 ax2.set_ylabel('Amplitude (mV)')
