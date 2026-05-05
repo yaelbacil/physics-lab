@@ -120,6 +120,15 @@ amplitude1 = pd.to_numeric(df_exp4_m1['Amplitude [mV] - Plot 0'], errors='coerce
 distance2 = pd.to_numeric(df_exp4_m2['Distance [mm] - Plot 0'], errors='coerce').to_numpy()
 amplitude2 = pd.to_numeric(df_exp4_m2['Amplitude [mV] - Plot 0'], errors='coerce').to_numpy()
 
+# remove non-finite values
+mask1 = np.isfinite(distance1) & np.isfinite(amplitude1)
+distance1 = distance1[mask1]
+amplitude1 = amplitude1[mask1]
+
+mask2 = np.isfinite(distance2) & np.isfinite(amplitude2)
+distance2 = distance2[mask2]
+amplitude2 = amplitude2[mask2]
+
 # remove (0,0) point
 mask1 = (distance1 != 0) & (amplitude1 != 0)
 distance1 = distance1[mask1]
