@@ -12,7 +12,6 @@ exp4_m2 = r"https://raw.githubusercontent.com/yaelbacil/physics-lab/refs/heads/m
 df_exp4_m1 = pd.read_csv(exp4_m1)
 df_exp4_m2 = pd.read_csv(exp4_m2)
 
-
 def smooth_signal(amplitude, num_minima=6):
     """Smooth the signal lightly to reduce noise-driven minima.
 

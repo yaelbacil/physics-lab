@@ -9,7 +9,6 @@ from scipy.optimize import curve_fit
 def parabola(x, a, b, c):
     return a * x ** 2 + b * x + c
 
-
 # Load data from the repository
 exp3_url = 'https://raw.githubusercontent.com/yaelbacil/physics-lab/refs/heads/main/exp%203%20mesure%201.csv'
 df_exp3 = pd.read_csv(exp3_url)
@@ -25,7 +24,7 @@ df_exp3_clean = df_exp3.dropna().reset_index(drop=True)
 x_data = df_exp3_clean[x_col].values
 y_data = df_exp3_clean[y_col].values
 
-# 1. Find rough approximate minima using find_peaks on inverted data
+# Find rough approximate minima using find_peaks on inverted data
 min_distance = len(x_data) // 8
 rough_peaks, _ = find_peaks(-y_data, distance=min_distance, prominence=np.max(y_data) * 0.05)
 
@@ -39,7 +38,7 @@ fit_window = int(min_distance * 0.3)
 plt.figure(figsize=(12, 7))
 plt.plot(x_data, y_data, color='blue', alpha=0.4, marker='.', label='Data Points')
 
-# 2. Iterate through rough peaks, fit a parabola, and find exact vertex
+# Iterate through rough peaks, fit a parabola, and find exact vertex
 for idx in rough_peaks:
     start_idx = max(0, idx - fit_window)
     end_idx = min(len(x_data), idx + fit_window + 1)
@@ -74,27 +73,25 @@ for idx in rough_peaks:
     minima_x_err.append(err_x_min)
 
     # Plot the fitted parabola
-    x_plot = np.linspace(x_fit[0], x_fit[-1], 100)
-    plt.plot(x_plot, parabola(x_plot, a, b, c), color='lime', linestyle='-', linewidth=2.5, alpha=0.9, zorder=3)
+    # x_plot = np.linspace(x_fit[0], x_fit[-1], 100)
+    # plt.plot(x_plot, parabola(x_plot, a, b, c), color='lime', linestyle='-', linewidth=2.5, alpha=0.9, zorder=3)
 
 exact_minima_x = np.array(exact_minima_x)
 exact_minima_y = np.array(exact_minima_y)
 minima_x_err = np.array(minima_x_err)
 
-# Y-axis uncertainty (instrumental error from the setup)
-y_err = np.full(len(exact_minima_y), 10.0)
 
-# 3. Plot the exact calculated minima with error bars
-plt.errorbar(exact_minima_x, exact_minima_y, xerr=minima_x_err, yerr=y_err, fmt='none',
+# Plot the exact calculated minima with error bars
+plt.errorbar(exact_minima_x, exact_minima_y, xerr=minima_x_err, fmt='none',
              ecolor='black', capsize=5, capthick=1.5, zorder=4, label='Uncertainties')
 
 plt.plot(exact_minima_x, exact_minima_y, marker='o', linestyle='none', color='red',
-         markeredgecolor='black', markersize=8, zorder=5, label='Exact Minima (Parabolic Fit)')
+         markeredgecolor='black', markersize=8, zorder=5, label='Minima')
 
-# Dummy line for legend
-plt.plot([], [], color='lime', linestyle='-', linewidth=2.5, label='Fitted Parabola Curve')
 
-plt.title('Amplitude vs Distance - Standing Wave (Parabolic Fit)', fontsize=14)
+# plt.plot([], [], color='lime', linestyle='-', linewidth=2.5, label='Fitted Parabola Curve')
+
+plt.title('Amplitude vs Distance - Standing Wave', fontsize=14)
 plt.xlabel('Distance [mm]', fontsize=12)
 plt.ylabel('Amplitude [mV]', fontsize=12)
 plt.grid(True, alpha=0.3)
@@ -105,6 +102,7 @@ plt.legend(by_label.values(), by_label.keys(), loc='upper right')
 
 plt.tight_layout()
 plt.show()
+
 
 # --- Output the results ---
 print("--- Parabolic Fit Minima Results ---")
