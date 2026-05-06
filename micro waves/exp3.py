@@ -9,7 +9,6 @@ from scipy.optimize import curve_fit
 def parabola(x, a, b, c):
     return a * x ** 2 + b * x + c
 
-
 # Load data from the repository
 exp3_url = 'https://raw.githubusercontent.com/yaelbacil/physics-lab/refs/heads/main/exp%203%20mesure%201.csv'
 df_exp3 = pd.read_csv(exp3_url)
