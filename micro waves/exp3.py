@@ -104,6 +104,7 @@ plt.legend(by_label.values(), by_label.keys(), loc='upper right')
 plt.tight_layout()
 plt.show()
 
+
 # --- Output the results ---
 print("--- Parabolic Fit Minima Results ---")
 for i in range(len(exact_minima_x)):
