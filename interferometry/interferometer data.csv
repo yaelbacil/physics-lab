@@ -1,0 +1,11 @@
+exp 1 - red laser,,,exp 1 - green laser,,,exp 2 ,,,exp 3,,,exp 4,,,exp 5,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,exp camera fabri,
+light rings,delta x +- 0.01 mm,,light rings,delta x +- 0.01 mm,,light rings,angle (degree) +- 0.01,,light rings,P (mm Hg) +- 2,,light rings,delta x +- 0.01 mm,,,spliting ability - green led,neon,sodium,helium,mercury,,
+30,0.05,,30,0.06,,4,1.1,,0,300,,30,0.31,,integ [ms],70,5,700,70,100,light rings,delta x +- 0.01 mm
+60,0.11,,60,0.12,,8,2.21,,4,260,,60,0.59,,avg,3,3,3,3,3,30,0.33
+90,0.15,,90,0.18,,12,3.4,,7,220,,90,0.9,,,,,,,,60,0.63
+120,0.21,,120,0.23,,16,4.46,,11,180,,120,120,,,,,,,,90,0.87
+150,0.29,,150,0.28,,20,,,15,140,,150,154,,,,,,,,120,1.1
+,,,,,,24,,,19,100,,,,,,,,,,,150,1.41
+,,,,,,,,,21,80,,,,,note - the y axis is actually probability function of the wavelength spectrum,,,,,,,
+,,,,,,,,,we used green laser,,,,,,,,,,,,,
