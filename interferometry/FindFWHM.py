@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
 # Load data from the repository
-exp3_url = r'data files interferometry\sodium.csv'
+exp3_url = r'data files interferometry\helium.csv'
 df_exp3 = pd.read_csv(exp3_url)
 
 x_col = df_exp3.columns[0]
@@ -104,9 +104,9 @@ plt.errorbar(exact_maxima_x, exact_maxima_y, xerr=maxima_x_err, fmt='none',
 plt.plot(exact_maxima_x, exact_maxima_y, marker='o', linestyle='none', color='red',
          markeredgecolor='black', markersize=8, zorder=5, label='Maxima (Center of Mass)')
 
-plt.title('Volt vs wave length of sodium', fontsize=14)
+plt.title('Amplitude vs wave length of helium', fontsize=14)
 plt.xlabel('Wave length [nm]', fontsize=12)
-plt.ylabel('Volt [mV]', fontsize=12)
+plt.ylabel('Amplitude [a.u]', fontsize=12)
 plt.grid(True, alpha=0.3)
 
 handles, labels = plt.gca().get_legend_handles_labels()
