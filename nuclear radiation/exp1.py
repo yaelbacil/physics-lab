@@ -30,4 +30,5 @@ total_cosmic_ray = df_cosmic_ray['counts'].sum()
 cosmic_ray_per_second = total_cosmic_ray / 90
 cosmic_ray_per_second_err = np.sqrt(total_cosmic_ray) / 90
 
-print(f"Cosmic ray counts per second: {cosmic_ray_per_second:.4f} ± {cosmic_ray_per_second_err:.4f} 1/s")
+print(f"Total cosmic ray counts: {total_cosmic_ray}")
+print(f"Cosmic ray counts per second: {cosmic_ray_per_second:.4f} ± {cosmic_ray_per_second_err:.4f}")

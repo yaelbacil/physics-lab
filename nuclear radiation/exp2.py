@@ -40,15 +40,15 @@ print(f"reduced chi^2 = {red_chi2:.6g}")
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.errorbar(d, N, yerr=N_err, xerr=d_err, fmt='o', capsize=3, color='blue', label='Data')
 ax.plot(d_fit, N_fit, color='red', label=r'Fit: $\frac{c}{(d + R_0)^2}$')
-ax.set_xlabel('distance (cm)')
-ax.set_ylabel('N (1/s)')
+ax.set_xlabel('distance [cm]')
+ax.set_ylabel('N')
 ax.set_title('Counts per second vs Distance')
 ax.grid(True, alpha=0.3)
 ax.legend()
 ax.text(
     0.03,
     0.97,
-    f'c = {c_fit:.3g} ± {c_unc:.3g}\n$R_0$ = {R0_fit:.3g} ± {R0_unc:.3g} cm\nreduced $\\chi^2$ = {red_chi2:.3g}',
+    f'c = {c_fit:.2f} ± {c_unc:.4g} [$cm^2$]\n$R_0$ = {R0_fit:.4g} ± {R0_unc:.4g} [cm]\nreduced $\\chi^2$ = {red_chi2:.3g}',
     transform=ax.transAxes,
     va='top',
     bbox=dict(facecolor='white', alpha=0.9, edgecolor='black')

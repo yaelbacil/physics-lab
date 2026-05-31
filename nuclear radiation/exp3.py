@@ -37,23 +37,23 @@ dof = len(N) - len(out.beta)
 red_chi2 = chi2 / dof
 
 print(f"mu = {mu_fit:.6g} ± {mu_unc:.6g} mm^-1")
-print(f"N0 = {N0_fit:.6g} ± {N0_unc:.6g} 1/s")
+print(f"N0 = {N0_fit:.6g} ± {N0_unc:.6g}")
 print(f"chi^2 = {chi2:.6g}")
 print(f"reduced chi^2 = {red_chi2:.6g}")
 
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.errorbar(x, N, yerr=N_err, xerr=x_err, fmt='o', capsize=3, color='blue', label='Data')
 ax.plot(x_fit, N_fit, color='red', label=r'Fit: $N = N_0 e^{-\mu x}$')
-ax.set_xlabel('x (mm)')
-ax.set_ylabel('N (1/s)')
+ax.set_xlabel('x [mm]')
+ax.set_ylabel('N')
 ax.set_title('N vs x - Lead (Pb)')
 ax.grid(True, alpha=0.3)
 ax.legend()
 ax.text(
     0.03,
     0.03,
-    f'$\\mu$ = {mu_fit:.3g} ± {mu_unc:.3g} (mm$^{{-1}}$)\n'
-    f'$N_0$ = {N0_fit:.3g} ± {N0_unc:.3g} (1/s)\n'
+    f'$\\mu$ = {mu_fit:.3g} ± {mu_unc:.3g} [mm$^{{-1}}$]\n'
+    f'$N_0$ = {N0_fit:.3g} ± {N0_unc:.3g}\n'
     f'reduced $\\chi^2$ = {red_chi2:.3g}',
     transform=ax.transAxes,
     va='bottom',
