@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7390ef2-2074-4566-9a02-a241205bda13" name="Changes" comment="6.4 code">
-      <change afterPath="$PROJECT_DIR$/nuclear radiation/exp4-double_exponential_fit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuclear radiation/exp4-exponential_fit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
