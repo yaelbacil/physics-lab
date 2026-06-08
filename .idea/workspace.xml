@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7390ef2-2074-4566-9a02-a241205bda13" name="Changes" comment="6.4 code">
+      <change afterPath="$PROJECT_DIR$/nuclear radiation/exp5-barium.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuclear radiation/exp4-exponential_fit.py" beforeDir="false" afterPath="$PROJECT_DIR$/nuclear radiation/exp4-exponential_fit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +124,7 @@
     "Python.exp4-exponential_fit.executor": "Run",
     "Python.exp4.executor": "Run",
     "Python.exp4_polyethelene.executor": "Run",
+    "Python.exp5-barium.executor": "Run",
     "Python.glassRefractiveIndex.executor": "Run",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -297,8 +300,9 @@
     <SUITE FILE_PATH="coverage/physics_lab$exp1.coverage" NAME="exp1 Coverage Results" MODIFIED="1776436842594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/micro waves" />
     <SUITE FILE_PATH="coverage/exp3_py$exp1.coverage" NAME="exp1 Coverage Results" MODIFIED="1780660541443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nuclear radiation" />
     <SUITE FILE_PATH="coverage/exp3_py$exp4_exponential_fit.coverage" NAME="exp4-exponential_fit Coverage Results" MODIFIED="1780879159294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nuclear radiation" />
+    <SUITE FILE_PATH="coverage/exp3_py$exp5_barium.coverage" NAME="exp5-barium Coverage Results" MODIFIED="1780932215345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nuclear radiation" />
     <SUITE FILE_PATH="coverage/exp3_py$exp4_polyethelene.coverage" NAME="exp4_polyethelene Coverage Results" MODIFIED="1780874866799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nuclear radiation" />
-    <SUITE FILE_PATH="coverage/exp3_py$exp4_double_exponential_fit.coverage" NAME="exp4-double_exponential_fit Coverage Results" MODIFIED="1780878869199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nuclear radiation" />
+    <SUITE FILE_PATH="coverage/exp3_py$exp4_double_exponential_fit.coverage" NAME="exp4-double_exponential_fit Coverage Results" MODIFIED="1780931384920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nuclear radiation" />
     <SUITE FILE_PATH="coverage/physics_lab$debug_minima.coverage" NAME="debug_minima Coverage Results" MODIFIED="1776406732506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/micro waves" />
   </component>
   <component name="github-copilot-workspace">
