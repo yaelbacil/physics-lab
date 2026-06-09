@@ -23,7 +23,7 @@ err_rates_beta = np.sqrt(err_rates_total_net**2 + err_gamma_net**2)
 # Linearization: ln(R) = ln(R0) - mu * x
 ln_rates_beta = np.log(rates_beta)
 
-# Error propagation for ln
+# Uncertainty propagation for ln
 err_ln_rates_beta = err_rates_beta / rates_beta
 
 # Define a linear fit y = mx + b
