@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7390ef2-2074-4566-9a02-a241205bda13" name="Changes" comment="6.4 code">
-      <change afterPath="$PROJECT_DIR$/nuclear radiation/expScop.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuclear radiation/gaous_statistics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuclear radiation/pouasion_statistics.py" afterDir="false" />
+    <list default="true" id="d7390ef2-2074-4566-9a02-a241205bda13" name="Changes" comment="try">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuclear radiation/exp5-barium.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuclear radiation/exp4-exponential_fit.py" beforeDir="false" afterPath="$PROJECT_DIR$/nuclear radiation/exp4-exponential_fit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,22 +69,22 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/yaelbacil/physics-lab.git&quot;,
-    &quot;accountId&quot;: &quot;a72eb599-b158-421e-ba37-96f3553aed64&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/yaelbacil/physics-lab.git",
+    "accountId": "79f609ef-962f-4b43-9adb-5f0d00f5a464"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;yaelbacil&quot;,
-    &quot;repository&quot;: &quot;physics-lab&quot;
+    "owner": "yaelbacil",
+    "repository": "physics-lab"
   }
-}</component>
+}]]></component>
   <component name="McpProjectServerCommands">
     <McpServerCommand sourceId="UserConfigurationSource">
       <option name="allowedToolsNames" />
@@ -185,7 +179,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "gilad",
+    "git-widget-placeholder": "#26 on gilad",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Users/gilad/Documents/physics-lab",
     "node.js.detected.package.eslint": "true",
@@ -198,7 +192,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.FindFWHM">
     <configuration name="FindFWHM" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -359,7 +353,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PY-252.27397.106" />
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
       </set>
     </attachedChunks>
   </component>
@@ -377,6 +372,7 @@
       <workItem from="1778500217232" duration="2158000" />
       <workItem from="1778995761147" duration="602000" />
       <workItem from="1779265268748" duration="29638000" />
+      <workItem from="1780989688898" duration="1892000" />
     </task>
     <task id="LOCAL-00001" summary="6.4 code">
       <option name="closed" value="true" />
