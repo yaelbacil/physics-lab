@@ -33,6 +33,16 @@ popt1, pcov1 = curve_fit(malus_law, theta_rad1, I1, p0=parameters_initial_guess1
 I0_opt, theta0_opt, c_opt = popt1
 I0_err, theta0_err, c_err = np.sqrt(np.diag(pcov1))
 
+# define a constant function for fitting the second board
+def constant_fit(theta_rad2, m):
+    return m * np.ones_like(theta_rad2)
+
+# initial parameter guess for the second board (constant fit)
+parameters_initial_guess_const = [np.mean(I2)]
+popt_const, pcov_const = curve_fit(constant_fit, theta_rad2, I2, p0=parameters_initial_guess_const, sigma=np.full_like(I2, I2_err), absolute_sigma=True)
+m_opt = popt_const[0]
+m_err = np.sqrt(np.diag(pcov_const))[0]
+
 # define the Malus's law function for fitting the second board
 def quarter_malus_law(theta_rad2, A, theta_0, B):
     return A * (np.cos(theta_rad2 - theta_0)) ** 2 + B
@@ -45,12 +55,19 @@ popt2, pcov2 = curve_fit(quarter_malus_law, theta_rad2, I2, p0=parameters_initia
 A_opt, theta_0_opt, B_opt = popt2
 A_err, theta_0_err, B_err = np.sqrt(np.diag(pcov2))
 
-# chi-squared calculations for both models
+# chi-squared calculations for the first board
 I_model1 = malus_law(theta_rad1, I0_opt, theta0_opt, c_opt)
 chi_squared1 = np.sum(((I_model1 - I1)/I1_err)**2)
 dof1 = len(I1) - 3
 reduced_chi_squared1 = chi_squared1 / dof1
 
+# chi-squared calculations for the second board - constant model
+I_model_const = constant_fit(theta_rad2, m_opt)
+chi_squared_const = np.sum(((I_model_const - I2)/I2_err)**2)
+dof_const = len(I2) - 1
+reduced_chi_squared_const = chi_squared_const / dof_const
+
+# chi-squared calculations for the second board - Malus's law
 I_model2 = quarter_malus_law(theta_rad2, A_opt, theta_0_opt, B_opt)
 chi_squared2 = np.sum(((I_model2 - I2)/I2_err)**2)
 dof2 = len(I2) - 3
@@ -62,7 +79,7 @@ I_fit1 = malus_law(theta_fit1, I0_opt,theta0_opt, c_opt)
 plt.figure(figsize=(10, 5))
 plt.errorbar(theta_rad1, I1,xerr=theta_err1, yerr=I1_err, fmt='o',color='blue', capsize=3, label='Data')
 plt.plot(theta_fit1, I_fit1, color='red', linestyle='-', label='Fit')
-plt.title(r"Intensity VS Degree - Malus's law Fit - Half wave board", fontsize=15)
+plt.title(r"Intensity VS Degree - first board - Malus's law Fit", fontsize=15)
 plt.xlabel('Deg [rad]', fontsize=13)
 plt.ylabel('I [lux]', fontsize=13)
 plt.grid(True, which="both", ls="--", alpha=0.6)
@@ -77,13 +94,36 @@ plt.text(0.02, 0.05, text_str, transform=plt.gca().transAxes, fontsize=12,
          verticalalignment='bottom', bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
 plt.show()
 
-# plot for the second board
+# plot for the second board - constant fit
+theta_fit_const = np.linspace(min(theta_rad2), max(theta_rad2), 500)
+I_fit_const = constant_fit(theta_fit_const, m_opt)
+
+plt.figure(figsize=(10, 5))
+plt.errorbar(theta_rad2, I2, xerr=theta_err2, yerr=I2_err, fmt='o', color='blue', capsize=3, label='Data')
+plt.plot(theta_fit_const, I_fit_const, color='red', linestyle='-', label='Fit')
+plt.title(r"Intensity VS Degree - second board - Constant Fit", fontsize=15)
+plt.xlabel('Deg [rad]', fontsize=13)
+plt.ylabel('I [lux]', fontsize=13)
+plt.grid(True, which="both", ls="--", alpha=0.6)
+plt.legend(fontsize=12, loc='upper left')
+
+text_str_const = '\n'.join((
+    fr'$m = {m_opt:.3f} \pm {m_err:.3f}$ lux',
+    fr'$\chi^2 = {reduced_chi_squared_const:.2f}$'
+))
+
+plt.text(0.98, 0.04, text_str_const, transform=plt.gca().transAxes, fontsize=10,
+         horizontalalignment='right', verticalalignment='bottom', multialignment='left',
+         bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.8))
+plt.show()
+
+# plot for the second board - Malus's law
 theta_fit2 = np.linspace(min(theta_rad2), max(theta_rad2), 500)
 I_fit2 = quarter_malus_law(theta_fit2, A_opt, theta_0_opt, B_opt)
 plt.figure(figsize=(10, 5))
 plt.errorbar(theta_rad2, I2,xerr=theta_err2, yerr=I2_err, fmt='o',color='blue', capsize=3, label='Data')
 plt.plot(theta_fit2, I_fit2, color='red', linestyle='-', label='Fit')
-plt.title(r"Intensity VS Degree - Malus's law Fit - Quarter wave board", fontsize=15)
+plt.title(r"Intensity VS Degree - second board - Malus's law Fit", fontsize=15)
 plt.xlabel('Deg [rad]', fontsize=13)
 plt.ylabel('I [lux]', fontsize=13)
 plt.grid(True, which="both", ls="--", alpha=0.6)
@@ -97,3 +137,22 @@ text_str = '\n'.join((
 plt.text(0.98, 0.04, text_str, transform=plt.gca().transAxes, fontsize=10, horizontalalignment='right',
          verticalalignment='bottom', multialignment='left', bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.8))
 plt.show()
+
+# print the results for the first board
+print("First Board Fit Results:")
+print(f"I0 = {I0_opt:.5f} ± {I0_err:.5f} lux")
+print(f"c = {c_opt:.5f} ± {c_err:.5f} lux")
+print(f"theta0 = {theta0_opt:.4f} ± {theta0_err:.4f} rad = {np.rad2deg(theta0_opt):.2f}° ± {np.rad2deg(theta0_err):.2f}°")
+print(f"Reduced Chi-squared = {reduced_chi_squared1:.2f}")
+
+# print the results for the second board - constant fit
+print("\nSecond Board Constant Fit Results:")
+print(f"m = {m_opt:.3f} ± {m_err:.3f} lux")
+print(f"Reduced Chi-squared = {reduced_chi_squared_const:.2f}")
+
+# print the results for the second board - Malus's law fit
+print("\nSecond Board Malus's Law Fit Results:")
+print(f"A = {A_opt:.5f} ± {A_err:.5f} lux")
+print(f"B = {B_opt:.5f} ± {B_err:.5f} lux")
+print(f"theta_0 = {theta_0_opt:.4f} ± {theta_0_err:.4f} rad = {np.rad2deg(theta_0_opt):.2f}° ± {np.rad2deg(theta_0_err):.2f}°")
+print(f"Reduced Chi-squared = {reduced_chi_squared2:.2f}")
